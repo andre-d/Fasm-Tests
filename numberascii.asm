@@ -65,6 +65,7 @@ int2str_loop:
     ret
 
 int2str_error:
+    printmsg error,error.size
     exit 1
 
 int2str:
@@ -98,6 +99,7 @@ start:
 segment readable writeable
 tmesg db MESSAGE,newline
 announce db MESSAGE_NUMBERIS
+error db ERRORMSG,newline
 announcetwo db MESSAGE_NUMBERISTWO
 nl db newline
 buffer db NUM_BYTES dup(' ')

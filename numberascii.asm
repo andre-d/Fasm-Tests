@@ -61,11 +61,11 @@ int2str_loop:
     
     dec esi ; move the counter down one
     cmp esi,0 
-    jnz int2str_loop ; if we have not reached the last char yet, contine
+    jnz int2str_loop ; if we have not reached the last char yet, continue
     ret
 
 int2str:
-; Converts eax to a string
+; Converts eax to a string - expects a number in eax.  Unsigned
     push eax
     xor esi,esi  ; length
     call getlen ; get the length into esi

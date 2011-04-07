@@ -8,9 +8,6 @@ entry start
 
 segment readable executable
 
-do_num:
-; EAX stores the value for the number
-
 
 getlen_loop:
     xor edx, edx

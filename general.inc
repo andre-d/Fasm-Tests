@@ -8,7 +8,6 @@
 		int 0x80    ; kick the kernel
 	}
 	
-	
 	macro printmsg msg
 	{	
 		mov ecx,msg
@@ -17,3 +16,5 @@
 		mov ebx,1 ; file descriptor
 		int 0x80  ; kick the kernel
 	}
+	
+

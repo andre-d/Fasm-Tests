@@ -20,11 +20,17 @@
 	
 	; Use to print a message to the screen.  Expects a char * and a length in bytes 
 	macro printmsg msg,size
-	{	
+	{	push eax
+		push ecx
+		push edx
+		
 		mov ecx,msg
 		mov edx,size
 		mov eax,4 ; sys_write
 		mov ebx,1 ; file descriptor
 		int 0x80  ; kick the kernel
+		
+		pop edx
+		pop ecx
+		pop eax
 	}
-

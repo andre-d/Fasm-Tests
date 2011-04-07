@@ -28,6 +28,7 @@ getlen:
     pop eax
     ret
 
+
 int2str_loop:
     ; Isolates the current number, converts to to an ascii character, and places it into the buffer, then continues to the next number
     
@@ -94,6 +95,7 @@ start:
     printmsg buffer,buffer.size
     pnl
     exit 0           ; Exit cleanly
+
 
 
 segment readable writeable

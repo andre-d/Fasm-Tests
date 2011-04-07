@@ -3,16 +3,15 @@
 include 'general.inc'
 include 'numberascii.inc'
 
-format ELF executable 3
+format ELF executable
 entry start
 
 segment readable executable
 
 
 start:
-    printmsg(MESSAGE)    ; Print the message
-    printmsg("Okay...") 
-    exit(0)              ; Exit cleanly
+    printmsg(tmesg)    ; Print the message
+    exit(1)            ; Exit cleanly
     
 segment readable writeable
-
+tmesg db MESSAGE,0xA

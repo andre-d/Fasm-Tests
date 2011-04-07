@@ -64,8 +64,13 @@ int2str_loop:
     jnz int2str_loop ; if we have not reached the last char yet, continue
     ret
 
+int2str_error:
+    exit 1
+
 int2str:
 ; Converts eax to a string - expects a number in eax.  Unsigned
+    cmp eax, MAX_NUM
+    ja int2str_error
     push eax
     xor esi,esi  ; length
     call getlen ; get the length into esi
@@ -95,5 +100,5 @@ tmesg db MESSAGE,newline
 announce db MESSAGE_NUMBERIS
 announcetwo db MESSAGE_NUMBERISTWO
 nl db newline
-buffer db 5 dup(' ')
+buffer db NUM_BYTES dup(' ')
 

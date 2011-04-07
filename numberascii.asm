@@ -32,7 +32,7 @@ getlen:
     ret
 
 int2str_loop:
-    ;  [buffer+esi-1]
+    ; Isolates the current number, converts to to an ascii character, and places it into the buffer, then continues to the next number
     
     mov ebx, eax ; move the current value into ebx (123)
     xor edx, edx
@@ -45,9 +45,9 @@ int2str_loop:
     mov edx, eax ; move the current value into edx (12)
    
  
-   push eax
-   imul edx,10 ; multiply eax by ten, should store the result in edx (120)
-   pop eax
+    push eax
+    imul edx,10 ; multiply eax by ten, should store the result in edx (120)
+    pop eax
 
     
     push eax
@@ -55,17 +55,16 @@ int2str_loop:
       
     sub ebx, edx ;(subtract edx (120 from ebx (123)
   
-    mov eax, ebx
-  
-    add eax,0x30
-    mov [buffer+esi-1],al;
+    mov eax, ebx ; move the result of the subtraction into eax
    
+    add eax,0x30 ; add 0x30 (ascii base)
+    mov [buffer+esi-1],al ; Place into the proper position into the buffer
+   
+    pop eax ; restore eax to before the whole mess with the subtraction
     
-    pop eax
-    
-    dec esi;
-    cmp esi,0
-    jnz int2str_loop
+    dec esi ; move the counter down one
+    cmp esi,0 
+    jnz int2str_loop ; if we have not reached the last char yet, contine
     ret
 
 int2str:

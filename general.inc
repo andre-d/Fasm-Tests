@@ -1,5 +1,5 @@
 ; General config
-	newline equ 0xA
+	newline equ 0xA ; The unix newline character
 	
 ; Used to set a size value easy
 	struc db [data]{
@@ -10,7 +10,7 @@
 	
 ; General functions
 
-	; Use to quit
+	; Use to quit, takes a number for an exit code
 	macro exit n{
 		mov esi, n
 		mov eax,1   ; sys_exit
@@ -18,7 +18,7 @@
 		int 0x80    ; kick the kernel
 	}
 	
-	; Use to print a message to the screen
+	; Use to print a message to the screen.  Expects a char * and a length in bytes 
 	macro printmsg msg,size
 	{	
 		mov ecx,msg

@@ -28,7 +28,6 @@ clearbuffer:
 clearbuffer_loop:
     dec eax
     mov [buffer+eax],0x0
-    cmp eax, 0
     jnz clearbuffer_loop
     pop eax
     ret

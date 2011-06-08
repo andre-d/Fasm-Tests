@@ -19,7 +19,21 @@ getlen_loop:
     cmp eax, 0 
     jnz getlen_loop ; if it zero, it is time to leave
     ret
+
+clearbuffer:
+    push eax
+    mov eax,buffer.size
+    jmp clearbuffer_loop
     
+clearbuffer_loop:
+    dec eax
+    push eax
+    mov [buffer+eax],0x0
+    pop eax
+    cmp eax, 0
+    jnz clearbuffer_loop
+    pop eax
+    ret
 
 getlen:
 ; Gets the length of eax in terms of base10 numbers, stores in esi
@@ -88,6 +102,7 @@ start:
     mov eax, NUMBER
     call int2str
     printmsg buffer,buffer.size
+    call clearbuffer
     pnl
     printmsg announcetwo,announcetwo.size
     mov eax, ANOTHER_NUMBER
@@ -104,5 +119,4 @@ announce db MESSAGE_NUMBERIS
 error db ERRORMSG,newline
 announcetwo db MESSAGE_NUMBERISTWO
 nl db newline
-buffer db NUM_BYTES dup(' ')
-
+buffer db NUM_BYTES dup(0x0)

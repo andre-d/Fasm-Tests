@@ -1,6 +1,6 @@
 ; General config
 	newline equ 0xA ; The unix newline character
-	
+    
 ; Used to set a size value easy
 	struc db [data]{
 	   common
@@ -34,3 +34,7 @@
 		pop ecx
 		pop eax
 	}
+    
+    macro pnl {
+        printmsg nl,1
+    }
